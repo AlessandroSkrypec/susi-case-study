@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUSI — Product Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D0D0D;--ink-2:#3D3D3D;--ink-3:#888;--ink-4:#C4C4C4;
+  --bg:#FAFAF8;--surface:#FFFFFF;
+  --border:rgba(0,0,0,0.07);--border-md:rgba(0,0,0,0.13);
+  --accent:#1246F0;--accent-light:#EEF2FF;--accent-mid:#BDD0FF;
+  --green:#15803D;--green-light:#F0FDF4;
+  --amber:#B45309;--amber-light:#FFFBEB;
+  --red:#DC2626;--red-light:#FEF2F2;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Geist',system-ui,sans-serif;
+  --r:10px;--r-lg:16px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;background:rgba(250,250,248,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-wrap{max-width:1100px;margin:0 auto;display:flex;align-items:center;padding:0 48px;gap:0;overflow-x:auto;scrollbar-width:none}
+.nav-wrap::-webkit-scrollbar{display:none}
+.nav-logo{font-family:var(--serif);font-size:17px;color:var(--ink);margin-right:20px;padding:14px 0;white-space:nowrap;flex-shrink:0}
+.nav-link{font-size:12px;font-weight:500;letter-spacing:.02em;color:var(--ink-3);padding:16px 13px;white-space:nowrap;border:none;background:none;cursor:pointer;font-family:var(--sans);border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.nav-link:hover{color:var(--ink)}
+.nav-link.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* LAYOUT */
+.page{max-width:1100px;margin:0 auto;padding:0 48px}
+.section{padding:88px 0 0}
+.rule{height:1px;background:var(--border);margin-top:88px}
+
+/* TYPE */
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.title{font-family:var(--serif);font-size:clamp(30px,4vw,48px);font-weight:400;line-height:1.1;color:var(--ink);margin-bottom:16px}
+.title em{font-style:italic}
+.lead{font-size:17px;color:var(--ink-2);max-width:560px;line-height:1.7;margin-bottom:48px}
+
+/* COVER */
+.cover{background:var(--ink);color:white;padding:100px 48px 88px;position:relative;overflow:hidden}
+.cover::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 50%,rgba(18,70,240,.28) 0%,transparent 65%),radial-gradient(ellipse 40% 40% at 15% 85%,rgba(18,70,240,.12) 0%,transparent 60%);pointer-events:none}
+.cover-in{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.cover-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:32px}
+.cover-tag span{width:20px;height:1px;background:rgba(255,255,255,.25);display:block}
+.cover h1{font-family:var(--serif);font-size:clamp(52px,9vw,100px);font-weight:400;line-height:1;margin-bottom:28px}
+.cover h1 em{font-style:italic;color:#93B4FF}
+.cover-desc{font-size:18px;color:rgba(255,255,255,.5);max-width:560px;line-height:1.65;margin-bottom:64px}
+.cover-meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid rgba(255,255,255,.1);padding-top:32px}
+.cmi{padding:0 32px 0 0;margin-right:32px;border-right:1px solid rgba(255,255,255,.1)}
+.cmi:last-child{border-right:none}
+.cmi-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:6px}
+.cmi-value{font-size:13px;color:rgba(255,255,255,.75);line-height:1.4}
+
+/* OVERVIEW */
+.ov-grid{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:start}
+.ov-statement{font-family:var(--serif);font-size:24px;line-height:1.5;color:var(--ink);border-left:2px solid var(--accent);padding-left:22px;margin:28px 0}
+.ov-body{font-size:15px;color:var(--ink-2);line-height:1.75}
+.meta-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.meta-head{padding:16px 22px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);background:var(--bg)}
+.meta-row{padding:15px 22px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:3px}
+.meta-row:last-child{border-bottom:none}
+.ml{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
+.mv{font-size:13px;color:var(--ink);line-height:1.4}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 32px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+/* STATS */
+.stat-band{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:28px}
+.stat-item{background:var(--surface);padding:32px 28px}
+.stat-num{font-family:var(--serif);font-size:56px;font-weight:400;line-height:1;color:var(--ink);margin-bottom:10px}
+.blue{color:var(--accent)}.green{color:var(--green)}.red{color:var(--red)}
+.stat-desc{font-size:13px;color:var(--ink-2);line-height:1.5}
+.stat-src{font-size:11px;color:var(--ink-4);margin-top:10px}
+
+/* PROBLEM CARDS */
+.prob-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:26px;display:flex;flex-direction:column;gap:10px}
+.prob-idx{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
+.prob-title{font-size:15px;font-weight:500;color:var(--ink);line-height:1.4}
+.prob-body{font-size:13px;color:var(--ink-2);line-height:1.6}
+
+/* PILLS */
+.pill{display:inline-flex;align-items:center;font-size:11px;font-weight:600;padding:4px 10px;border-radius:100px;letter-spacing:.03em}
+.pb{background:var(--accent-light);color:var(--accent)}
+.pg{background:var(--green-light);color:var(--green)}
+.pa{background:var(--amber-light);color:var(--amber)}
+.pr{background:var(--red-light);color:var(--red)}
+.pgr{background:#F3F4F6;color:#374151}
+.ph{background:var(--amber-light);color:var(--amber);border:1px solid #FDE68A}
+
+/* RESEARCH */
+.r-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:26px}
+.r-title{font-size:13px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.r-item{padding:11px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--ink-2);line-height:1.5}
+.r-item:last-child{border-bottom:none}
+.notice{background:var(--amber-light);border:1px solid #FDE68A;border-radius:var(--r);padding:13px 16px;font-size:12px;color:var(--amber);line-height:1.55;margin-top:14px}
+
+/* INSIGHTS */
+.ins-row{display:grid;grid-template-columns:64px 1fr;border-bottom:1px solid var(--border);padding:26px 0;align-items:start}
+.ins-row:first-child{padding-top:0}
+.ins-row:last-child{border-bottom:none}
+.ins-n{font-family:var(--serif);font-size:40px;font-weight:400;color:var(--border-md);line-height:1}
+.ins-title{font-size:16px;font-weight:500;margin-bottom:8px;color:var(--ink)}
+.ins-body{font-size:14px;color:var(--ink-2);line-height:1.65}
+
+/* PERSONAS */
+.persona{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.p-top{padding:26px 30px;background:var(--ink);color:white;display:flex;align-items:center;gap:16px}
+.p-avatar{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:17px;flex-shrink:0}
+.p-name{font-family:var(--serif);font-size:19px;margin-bottom:2px}
+.p-bio{font-size:12px;color:rgba(255,255,255,.45)}
+.p-body{padding:26px 30px}
+.p-quote{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink-2);border-left:2px solid var(--border-md);padding-left:15px;margin-bottom:22px;line-height:1.55}
+.p-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.p-col-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:10px}
+.p-li{font-size:13px;color:var(--ink-2);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.p-li:last-child{border-bottom:none}
+.dot{width:4px;height:4px;border-radius:50%;flex-shrink:0;margin-top:6px}
+
+/* JOURNEY */
+.jw{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.jt{display:grid;grid-template-columns:110px repeat(5,1fr)}
+.jh{background:var(--ink);color:white;padding:16px 16px;font-size:12px;font-weight:500;display:flex;align-items:center;border-right:1px solid rgba(255,255,255,.08)}
+.jh:last-child{border-right:none}
+.jl{padding:13px 16px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);background:var(--bg);border-top:1px solid var(--border);border-right:1px solid var(--border);display:flex;align-items:center}
+.jl:last-child{border-right:none}
+.jc{padding:15px 16px;font-size:12px;color:var(--ink-2);background:var(--surface);line-height:1.5;border-top:1px solid var(--border);border-right:1px solid var(--border);display:flex;align-items:center}
+.jc:last-child{border-right:none}
+.emo{font-size:22px;width:100%;display:flex;justify-content:center;align-items:center}
+.pain{font-size:11px;color:var(--red)}
+.ok{font-size:11px;color:var(--ink-4)}
+.warn{font-size:11px;color:var(--amber)}
+
+/* HMW */
+.hmw-card{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--accent);border-radius:0 0 var(--r-lg) var(--r-lg);padding:22px 26px}
+.hmw-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.hmw-q{font-family:var(--serif);font-size:17px;color:var(--ink);line-height:1.5}
+
+/* IDEATION */
+.idea-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;position:relative}
+.idea-card.chosen{border-color:var(--accent);border-width:1.5px}
+.idea-badge{position:absolute;top:-11px;left:18px;background:var(--accent);color:white;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase}
+.idea-name{font-size:15px;font-weight:600;margin-bottom:8px}
+.idea-desc{font-size:13px;color:var(--ink-2);line-height:1.6;margin-bottom:12px}
+.pro{font-size:12px;color:var(--green);margin:3px 0}
+.con{font-size:12px;color:var(--red);margin:3px 0}
+.verdict{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--ink-4);font-style:italic}
+
+/* FLOWS */
+.flow-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.flow-head{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600}
+.flow-body{padding:0 22px}
+.flow-step{display:flex;gap:13px;padding:15px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.flow-step:last-child{border-bottom:none}
+.flow-n{width:24px;height:24px;border-radius:50%;background:var(--accent);color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.flow-t{font-size:13px;font-weight:500;margin-bottom:2px}
+.flow-d{font-size:12px;color:var(--ink-3);line-height:1.5}
+
+/* WIREFRAMES */
+.wf-box{background:var(--surface);border:1.5px dashed var(--border-md);border-radius:var(--r-lg);padding:20px;display:flex;flex-direction:column;gap:8px}
+.wb{height:9px;background:var(--bg);border-radius:3px}
+.ws{width:40%}.wm{width:65%}.wf{width:100%}
+.wbl{background:var(--bg);border-radius:6px}
+.wbr{display:flex;gap:8px}
+.wbt{height:30px;border-radius:6px;flex:1;background:var(--accent-light);border:1px solid var(--accent-mid)}
+.wl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);text-align:center;margin-top:6px}
+
+/* CHAT */
+.chat{background:#E5DDD5;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 28px rgba(0,0,0,.08)}
+.chat-bar{background:#075E54;color:white;padding:12px 16px;display:flex;align-items:center;gap:12px}
+.chat-ico{width:34px;height:34px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.cbn{font-size:14px;font-weight:500}
+.cbs{font-size:11px;color:rgba(255,255,255,.6)}
+.chat-msgs{padding:14px;display:flex;flex-direction:column;gap:7px}
+.msg{max-width:80%;padding:8px 11px;font-size:13px;line-height:1.5}
+.bm{background:white;border-radius:0 8px 8px 8px;align-self:flex-start;color:#111;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.um{background:#DCF8C6;border-radius:8px 8px 0 8px;align-self:flex-end;color:#111;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.mt{font-size:10px;color:#8a8a8a;text-align:right;margin-top:3px}
+.mo{display:flex;flex-direction:column;gap:5px;margin-top:7px}
+.mo-opt{background:#EBF5FB;border:1px solid #AED6F1;border-radius:6px;padding:7px 11px;font-size:12px;color:#1A5276;font-weight:500}
+
+/* COMP TABLE */
+.comp-wrap{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.comp-table{width:100%;border-collapse:collapse;font-size:13px}
+.comp-table th{text-align:left;padding:12px 16px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);border-bottom:1px solid var(--border-md);background:var(--bg)}
+.comp-table td{padding:13px 16px;border-bottom:1px solid var(--border);color:var(--ink-2);vertical-align:middle}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table tr.hl td{background:var(--accent-light)}
+.cn{font-weight:500;color:var(--ink)}
+.ck{color:var(--green);font-size:15px}
+.cx{color:var(--ink-4);font-size:15px}
+.cp{color:var(--amber);font-size:15px}
+
+/* IMPACT */
+.imp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.imp-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;text-align:center}
+.imp-num{font-family:var(--serif);font-size:48px;font-weight:400;margin-bottom:8px;line-height:1}
+.imp-lbl{font-size:13px;color:var(--ink-2);line-height:1.5}
+.imp-tag{margin-top:12px}
+.kpi-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.kpi-head{padding:15px 24px;background:var(--bg);border-bottom:1px solid var(--border);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
+.kpi-row{display:flex;align-items:center;padding:15px 24px;gap:16px;border-bottom:1px solid var(--border)}
+.kpi-row:last-child{border-bottom:none}
+.kpi-name{font-size:13px;color:var(--ink-2);min-width:220px}
+.kpi-track{flex:1;height:5px;background:var(--bg);border-radius:100px;overflow:hidden}
+.kpi-fill{height:100%;background:var(--accent);border-radius:100px}
+.kpi-val{font-size:13px;font-weight:600;color:var(--ink);min-width:60px;text-align:right}
+
+/* LEARNINGS */
+.learn-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 26px}
+.learn-type{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.learn-title{font-size:15px;font-weight:500;margin-bottom:8px;line-height:1.4}
+.learn-body{font-size:13px;color:var(--ink-2);line-height:1.65}
+
+/* NEXT STEPS */
+.nx-row{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 22px;display:flex;align-items:flex-start;gap:16px}
+.nx-ico{width:36px;height:36px;border-radius:var(--r);background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.nx-title{font-size:14px;font-weight:500;margin-bottom:3px}
+.nx-desc{font-size:13px;color:var(--ink-2);line-height:1.5}
+
+/* FOOTER */
+.footer{background:var(--ink);color:rgba(255,255,255,.4);padding:40px 48px;margin-top:88px}
+.footer-in{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-brand{font-family:var(--serif);font-size:22px;color:white}
+.footer-note{font-size:12px}
+
+@media(max-width:768px){
+  .page{padding:0 20px}
+  .cover{padding:60px 20px}
+  .ov-grid{grid-template-columns:1fr}
+  .g2,.g3,.p-cols,.imp-grid{grid-template-columns:1fr}
+  .stat-band{grid-template-columns:1fr}
+  .jt{grid-template-columns:90px repeat(3,1fr)}
+  .jt>*:nth-child(5n-1),.jt>*:nth-child(5n){display:none}
+  .cover-meta{flex-direction:column;gap:16px}
+  .cmi{border-right:none;padding:0;margin:0}
+  .footer{padding:28px 20px}
+  .footer-in{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-wrap">
+    <div class="nav-logo">SUSI</div>
+    <button class="nav-link active" onclick="goto('cover',this)">Cover</button>
+    <button class="nav-link" onclick="goto('overview',this)">Overview</button>
+    <button class="nav-link" onclick="goto('problem',this)">Problema</button>
+    <button class="nav-link" onclick="goto('context',this)">Contexto</button>
+    <button class="nav-link" onclick="goto('research',this)">Pesquisa</button>
+    <button class="nav-link" onclick="goto('insights',this)">Insights</button>
+    <button class="nav-link" onclick="goto('personas',this)">Personas</button>
+    <button class="nav-link" onclick="goto('journey',this)">Jornada</button>
+    <button class="nav-link" onclick="goto('hmw',this)">HMW</button>
+    <button class="nav-link" onclick="goto('ideation',this)">Ideação</button>
+    <button class="nav-link" onclick="goto('flows',this)">Fluxos</button>
+    <button class="nav-link" onclick="goto('ui',this)">UI</button>
+    <button class="nav-link" onclick="goto('impact',this)">Impacto</button>
+    <button class="nav-link" onclick="goto('learnings',this)">Aprendizados</button>
+    <button class="nav-link" onclick="goto('nextsteps',this)">Próximos Passos</button>
+  </div>
+</nav>
+
+<!-- COVER -->
+<section id="cover">
+<div class="cover">
+<div class="cover-in">
+  <div class="cover-tag"><span></span>Product Case Study · 2024</div>
+  <h1>SUSI<br><em>Agendamento</em><br>pelo WhatsApp</h1>
+  <p class="cover-desc">Como projetamos um chatbot para eliminar filas físicas e reduzir a taxa de ausência no atendimento primário do SUS — usando o canal que 70% dos brasileiros já conhecem.</p>
+  <div class="cover-meta">
+    <div class="cmi"><div class="cmi-label">Papel</div><div class="cmi-value">Product Design<br>Product Management</div></div>
+    <div class="cmi"><div class="cmi-label">Plataforma</div><div class="cmi-value">WhatsApp<br>via Blip</div></div>
+    <div class="cmi"><div class="cmi-label">Contexto</div><div class="cmi-value">Acadêmico<br>Sprint de Produto</div></div>
+    <div class="cmi"><div class="cmi-label">Setor</div><div class="cmi-value">Saúde Pública<br>GovTech</div></div>
+  </div>
+</div>
+</div>
+</section>
+
+<div class="page">
+
+<!-- OVERVIEW -->
+<section id="overview" class="section">
+  <div class="eyebrow">Overview</div>
+  <div class="ov-grid">
+    <div>
+      <h2 class="title">O SUS tem um problema<br>de <em>acesso</em>, não de capacidade.</h2>
+      <div class="ov-statement">"Cheguei às 5h. A lista já tinha 40 pessoas. Quando abriu, as vagas tinham acabado."</div>
+      <p class="ov-body">Filas formadas antes do amanhecer. Ligações que ninguém atende. Vagas bloqueadas porque pacientes não conseguem cancelar. O problema não é falta de vagas — é falta de um canal funcional para acessá-las.<br><br>A SUSI é um chatbot de agendamento e cancelamento de consultas pelo WhatsApp, desenvolvido para Organizações Sociais de Saúde (OSS) que gerenciam unidades do SUS. O objetivo: tornar o acesso à saúde pública tão simples quanto mandar uma mensagem.</p>
+    </div>
+    <div>
+      <div class="meta-card">
+        <div class="meta-head">Sumário do projeto</div>
+        <div class="meta-row"><div class="ml">Problema</div><div class="mv">Acesso e continuidade no agendamento de consultas primárias no SUS</div></div>
+        <div class="meta-row"><div class="ml">Solução</div><div class="mv">Chatbot de agendamento e cancelamento via WhatsApp</div></div>
+        <div class="meta-row"><div class="ml">Cliente B2B</div><div class="mv">OSS — Organizações Sociais de Saúde</div></div>
+        <div class="meta-row"><div class="ml">Usuário final</div><div class="mv">Pacientes do SUS (atenção primária)</div></div>
+        <div class="meta-row"><div class="ml">Modelo de receita</div><div class="mv">SaaS B2B · Assinatura por unidade</div></div>
+        <div class="meta-row"><div class="ml">Time</div><div class="mv">PM · Dev Sr · Dev Pl · Comercial · QA</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- PROBLEM -->
+<section id="problem" class="section">
+  <div class="eyebrow">Problema</div>
+  <h2 class="title">Três barreiras que<br>quebram o acesso à saúde.</h2>
+  <p class="lead">O agendamento no SUS falha em três pontos críticos — cada um com custo humano direto.</p>
+  <div class="stat-band">
+    <div class="stat-item"><div class="stat-num red">50%</div><div class="stat-desc">Taxa de ausência pode chegar à metade dos agendamentos em algumas cidades</div><div class="stat-src">Nexo Jornal, 2021</div></div>
+    <div class="stat-item"><div class="stat-num" style="font-size:44px;letter-spacing:-1px">07:00</div><div class="stat-desc">Início do atendimento. Filas se formam horas antes — custo invisível para quem trabalha</div><div class="stat-src">Relatos documentados</div></div>
+    <div class="stat-item"><div class="stat-num" style="color:var(--ink-4)">∅</div><div class="stat-desc">Canal dedicado para cancelamento existe. Sem forma fácil de avisar, a vaga simplesmente desaparece</div><div class="stat-src">Gap identificado no produto</div></div>
+  </div>
+  <div class="g3">
+    <div class="prob-card"><div class="prob-idx">Barreira 01</div><div class="prob-title">Restrição de horário exclui quem trabalha</div><div class="prob-body">Atendimento apenas das 07h às 19h obriga trabalhadores com jornada convencional a faltar ao emprego para conseguir uma consulta.</div></div>
+    <div class="prob-card"><div class="prob-idx">Barreira 02</div><div class="prob-title">Cancelamento impossível gera vagas fantasma</div><div class="prob-body">Sem canal digital, a vaga fica bloqueada. Cada ausência não comunicada é uma vaga que poderia ter sido redistribuída para quem aguarda na fila.</div></div>
+    <div class="prob-card"><div class="prob-idx">Barreira 03</div><div class="prob-title">Deslocamento tem custo real e invisível</div><div class="prob-body">Ir à unidade apenas para agendar representa passagem, tempo e energia — crítico especialmente para idosos, mães com crianças e pessoas com mobilidade reduzida.</div></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- CONTEXT -->
+<section id="context" class="section">
+  <div class="eyebrow">Contexto de mercado</div>
+  <h2 class="title">Por que WhatsApp?<br>Porque é onde o Brasil vive.</h2>
+  <p class="lead">A escolha do canal não foi estética — foi estratégica. O WhatsApp elimina a maior barreira de adoção: aprender um app desconhecido.</p>
+  <div class="g3" style="margin-bottom:28px">
+    <div class="stat-item" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px"><div class="stat-num blue">70%</div><div class="stat-desc">Da população brasileira usa WhatsApp regularmente</div><div class="stat-src">Statisa, 2022</div></div>
+    <div class="stat-item" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px"><div class="stat-num" style="font-size:42px">249M</div><div class="stat-desc">Smartphones ativos — mais aparelhos do que habitantes</div><div class="stat-src">FGV, 2024</div></div>
+    <div class="stat-item" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px"><div class="stat-num green">1,2</div><div class="stat-desc">Smartphones por brasileiro — penetração disseminada nas classes C e D</div><div class="stat-src">FGV, 2024</div></div>
+  </div>
+  <div class="comp-wrap">
+    <table class="comp-table">
+      <thead><tr><th>Solução</th><th>Agendamento</th><th>Cancelamento</th><th>Chatbot 24h</th><th>Sem app novo</th><th>Gratuito para paciente</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td><span class="cn">SUSI</span> &nbsp;<span class="pill pb">Nossa solução</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+        <tr><td><span class="cn">ConecteSUS</span></td><td><span class="cp">◐</span></td><td><span class="cx">—</span></td><td><span class="cx">—</span></td><td><span class="cx">—</span></td><td><span class="ck">✓</span></td></tr>
+        <tr><td><span class="cn">0800 SUS</span></td><td><span class="ck">✓</span></td><td><span class="cp">◐</span></td><td><span class="cx">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+        <tr><td><span class="cn">Doctoralia</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="cx">—</span></td><td><span class="cx">—</span></td><td><span class="cx">—</span></td></tr>
+        <tr><td><span class="cn">Cedro Tech</span></td><td><span class="ck">✓</span></td><td><span class="cx">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="cx">—</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- RESEARCH -->
+<section id="research" class="section">
+  <div class="eyebrow">Pesquisa</div>
+  <h2 class="title">O que sabemos —<br>e o que ainda precisamos validar.</h2>
+  <p class="lead">A pesquisa combinou fontes secundárias robustas com análise de padrões documentados. A pesquisa primária é o próximo passo crítico.</p>
+  <div class="g2">
+    <div class="r-card">
+      <div class="r-title">📚 Pesquisa secundária <span class="pill pg" style="margin-left:auto">Concluída</span></div>
+      <div class="r-item">Nexo Jornal (2021) — 5 pontos sobre filas de atendimento no SUS</div>
+      <div class="r-item">G1 (2024) — Pacientes que faltam e não desmarcam prejudicam quem depende do SUS</div>
+      <div class="r-item">G1 (2021) — Problemas de agendamento pelo app da Prefeitura de SP</div>
+      <div class="r-item">FGV (2024) — Penetração de smartphones no Brasil: 249M aparelhos, 1,2 por habitante</div>
+      <div class="r-item">Statisa (2022) — 70% dos brasileiros usam WhatsApp regularmente</div>
+      <div class="r-item">Cedro Tech — Chatbots como futuro da interação com consumidores</div>
+    </div>
+    <div class="r-card">
+      <div class="r-title">🎙 Pesquisa qualitativa <span class="pill ph" style="margin-left:auto">⚠ Hipótese</span></div>
+      <div class="r-item">Entrevistas com 6–10 usuários frequentes do SUS — não realizadas nesta etapa</div>
+      <div class="r-item">Shadowing em UBS para observação do fluxo real de atendimento</div>
+      <div class="r-item">Entrevistas com recepcionistas para mapear gargalos operacionais</div>
+      <div class="r-item">Survey de literacia digital com o público-alvo das personas</div>
+      <div class="notice">⚠️ <strong>Nota de transparência:</strong> personas, jornada e fluxos foram construídos a partir de dados secundários e padrões relatados na mídia. Devem ser validados com pesquisa primária antes do desenvolvimento.</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- INSIGHTS -->
+<section id="insights" class="section">
+  <div class="eyebrow">Insights</div>
+  <h2 class="title">Quatro revelações que<br>guiaram o projeto.</h2>
+  <div class="card">
+    <div class="ins-row"><div class="ins-n">01</div><div><div class="ins-title">A ausência é um problema de UX, não de comportamento.</div><div class="ins-body">50% de taxa de ausência não reflete descaso — reflete a inexistência de um canal funcional para cancelar. O único meio disponível é ir pessoalmente ou ligar para uma linha cronicamente ocupada. Remover essa fricção pode ser suficiente para reverter a estatística.</div></div></div>
+    <div class="ins-row"><div class="ins-n">02</div><div><div class="ins-title">O smartphone já está lá. O WhatsApp também.</div><div class="ins-body">Com 1,2 smartphones por brasileiro e 70% usando WhatsApp, a solução alcança o público sem exigir instalação de novo aplicativo — eliminando a maior barreira de adoção nessa faixa populacional. O ConecteSUS falhou exatamente por exigir instalação e login num app instável.</div></div></div>
+    <div class="ins-row"><div class="ins-n">03</div><div><div class="ins-title">A janela de atendimento exclui sistematicamente quem trabalha.</div><div class="ins-body">Serviço disponível 07h–19h força o paciente a faltar ao emprego para agendar. Um bot disponível 24h resolve esse problema sem custo adicional de pessoal — o que seria inviável com atendimento humano fora do horário comercial.</div></div></div>
+    <div class="ins-row"><div class="ins-n">04</div><div><div class="ins-title">As OSS são o cliente certo — e têm autonomia para comprar.</div><div class="ins-body">Organizações Sociais de Saúde gerenciam unidades públicas com maior liberdade administrativa, sem depender de licitação federal para contratar serviços digitais. Isso reduz radicalmente o ciclo de venda e viabiliza um modelo SaaS B2B com previsibilidade de receita.</div></div></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- PERSONAS -->
+<section id="personas" class="section">
+  <div class="eyebrow">Personas <span class="pill ph" style="margin-left:6px;vertical-align:middle;font-size:10px">⚠ Hipótese</span></div>
+  <h2 class="title">Para quem estamos<br>projetando.</h2>
+  <p class="lead">Dois perfis primários construídos a partir de dados secundários. Precisam ser validados com pesquisa qualitativa.</p>
+  <div class="g2">
+    <div class="persona">
+      <div class="p-top">
+        <div class="p-avatar" style="background:#1D4ED8">MR</div>
+        <div><div class="p-name">Maria Rosa, 58 anos</div><div class="p-bio">Aposentada · São Paulo, SP · Renda C/D</div></div>
+      </div>
+      <div class="p-body">
+        <div class="p-quote">"Acordo cedo pra pegar fila, mas meu joelho não aguenta mais. Já fui lá duas vezes sem conseguir vaga."</div>
+        <div class="p-cols">
+          <div>
+            <div class="p-col-label">Necessidades</div>
+            <div class="p-li"><div class="dot" style="background:var(--accent)"></div>Agendar sem sair de casa</div>
+            <div class="p-li"><div class="dot" style="background:var(--accent)"></div>Receber lembrete antes da consulta</div>
+            <div class="p-li"><div class="dot" style="background:var(--accent)"></div>Cancelar facilmente se não puder ir</div>
+          </div>
+          <div>
+            <div class="p-col-label">Frustrações</div>
+            <div class="p-li"><div class="dot" style="background:var(--red)"></div>Fila às 5h da manhã</div>
+            <div class="p-li"><div class="dot" style="background:var(--red)"></div>Telefone sempre ocupado</div>
+            <div class="p-li"><div class="dot" style="background:var(--red)"></div>Apps complexos e instáveis</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:6px;flex-wrap:wrap">
+          <span class="pill pb">Usuária frequente do SUS</span>
+          <span class="pill pgr">WhatsApp nativo</span>
+          <span class="pill pa">Baixa literacia digital</span>
+        </div>
+      </div>
+    </div>
+    <div class="persona">
+      <div class="p-top" style="background:#1E293B">
+        <div class="p-avatar" style="background:#3B82F6">CS</div>
+        <div><div class="p-name">Carlos Silva, 34 anos</div><div class="p-bio">Auxiliar de logística · Santo André, SP</div></div>
+      </div>
+      <div class="p-body">
+        <div class="p-quote">"Só consigo ligar no almoço, mas a linha está sempre ocupada. Acabo desistindo."</div>
+        <div class="p-cols">
+          <div>
+            <div class="p-col-label">Necessidades</div>
+            <div class="p-li"><div class="dot" style="background:var(--accent)"></div>Agendar fora do horário comercial</div>
+            <div class="p-li"><div class="dot" style="background:var(--accent)"></div>Cancelar pelo celular sem ligar</div>
+            <div class="p-li"><div class="dot" style="background:var(--accent)"></div>Confirmação imediata do agendamento</div>
+          </div>
+          <div>
+            <div class="p-col-label">Frustrações</div>
+            <div class="p-li"><div class="dot" style="background:var(--red)"></div>Precisa faltar ao trabalho para agendar</div>
+            <div class="p-li"><div class="dot" style="background:var(--red)"></div>ConecteSUS instável e confuso</div>
+            <div class="p-li"><div class="dot" style="background:var(--red)"></div>Sem lembrete → esquece a consulta</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:6px;flex-wrap:wrap">
+          <span class="pill pb">Usuário eventual do SUS</span>
+          <span class="pill pg">Confortável com tecnologia</span>
+          <span class="pill pgr">Tempo escasso</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- JOURNEY -->
+<section id="journey" class="section">
+  <div class="eyebrow">Jornada do Usuário <span class="pill ph" style="margin-left:6px;vertical-align:middle;font-size:10px">⚠ Hipótese</span></div>
+  <h2 class="title">Como é agendar<br>uma consulta hoje.</h2>
+  <p class="lead">A frustração atinge seu pico nos momentos de maior esforço — exatamente onde a SUSI intervém.</p>
+  <div class="jw">
+    <div class="jt">
+      <div class="jh"></div>
+      <div class="jh">Reconhece necessidade</div>
+      <div class="jh">Tenta agendar</div>
+      <div class="jh">Vai à unidade</div>
+      <div class="jh">Aguarda consulta</div>
+      <div class="jh">Falta ou cancela</div>
+      <div class="jl">Ação</div>
+      <div class="jc">Percebe que precisa de consulta médica</div>
+      <div class="jc">Liga para a UBS ou decide ir pessoalmente</div>
+      <div class="jc">Acorda cedo, pega condução, enfrenta fila</div>
+      <div class="jc">Tenta lembrar data e hora sem confirmação</div>
+      <div class="jc">Não consegue cancelar — falta sem avisar</div>
+      <div class="jl">Emoção</div>
+      <div class="jc"><div class="emo">😐</div></div>
+      <div class="jc"><div class="emo">😤</div></div>
+      <div class="jc"><div class="emo">😠</div></div>
+      <div class="jc"><div class="emo">😟</div></div>
+      <div class="jc"><div class="emo">😔</div></div>
+      <div class="jl">Dor</div>
+      <div class="jc"><div class="ok">—</div></div>
+      <div class="jc"><div class="pain">Linha ocupada. Horário restrito. Sem alternativa.</div></div>
+      <div class="jc"><div class="pain">Custo de deslocamento. Vagas podem já ter acabado.</div></div>
+      <div class="jc"><div class="warn">Sem lembrete. Alta chance de esquecer.</div></div>
+      <div class="jc"><div class="pain">Vaga desperdiçada. O ciclo se repete.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- HMW -->
+<section id="hmw" class="section">
+  <div class="eyebrow">How Might We</div>
+  <h2 class="title">As perguntas que<br>orientaram a solução.</h2>
+  <p class="lead">Transformamos as dores identificadas em perguntas de oportunidade para guiar a ideação.</p>
+  <div class="g2">
+    <div class="hmw-card"><div class="hmw-label">HMW 01</div><div class="hmw-q">Como poderíamos permitir que um paciente agende uma consulta sem precisar se locomover ou ligar?</div></div>
+    <div class="hmw-card"><div class="hmw-label">HMW 02</div><div class="hmw-q">Como poderíamos reduzir ausências dando ao paciente um jeito fácil de cancelar no momento em que decide não ir?</div></div>
+    <div class="hmw-card"><div class="hmw-label">HMW 03</div><div class="hmw-q">Como poderíamos alcançar usuários com baixa literacia digital sem exigir que aprendam uma nova ferramenta?</div></div>
+    <div class="hmw-card"><div class="hmw-label">HMW 04</div><div class="hmw-q">Como poderíamos automatizar lembretes para reduzir o esquecimento — causa silenciosa de boa parte das ausências?</div></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- IDEATION -->
+<section id="ideation" class="section">
+  <div class="eyebrow">Ideação</div>
+  <h2 class="title">Três caminhos.<br>Uma escolha.</h2>
+  <p class="lead">Avaliamos alternativas antes de convergir. Cada opção foi descartada por razão específica — não por preferência.</p>
+  <div class="g3">
+    <div class="idea-card">
+      <div class="idea-name">Aplicativo nativo</div>
+      <div class="idea-desc">App dedicado com agendamento, histórico e notificações push integradas em experiência controlada.</div>
+      <div class="pro">✓ Experiência rica e controlada</div>
+      <div class="pro">✓ Notificações push nativas</div>
+      <div class="con">✗ Custo de desenvolvimento alto</div>
+      <div class="con">✗ Barreira de instalação significativa</div>
+      <div class="con">✗ Reproduziria os problemas do ConecteSUS</div>
+      <div class="verdict">Descartado: falha nos mesmos pontos que soluções existentes</div>
+    </div>
+    <div class="idea-card">
+      <div class="idea-name">Portal web responsivo</div>
+      <div class="idea-desc">Site acessível pelo navegador do celular, sem instalação, com formulário de agendamento simples.</div>
+      <div class="pro">✓ Sem instalação de app</div>
+      <div class="pro">✓ Desenvolvimento mais simples</div>
+      <div class="con">✗ Exige que usuário acesse URL desconhecida</div>
+      <div class="con">✗ Menor familiaridade que WhatsApp</div>
+      <div class="con">✗ Sem notificações ou lembretes automáticos</div>
+      <div class="verdict">Descartado: adoção incerta no público-alvo das personas</div>
+    </div>
+    <div class="idea-card chosen">
+      <div class="idea-badge">✓ Escolhido</div>
+      <div class="idea-name">Chatbot no WhatsApp</div>
+      <div class="idea-desc">Fluxo conversacional via WhatsApp — app que 70% dos brasileiros já usam e conhecem profundamente.</div>
+      <div class="pro">✓ Zero curva de aprendizado</div>
+      <div class="pro">✓ Disponível 24h sem custo de pessoal</div>
+      <div class="pro">✓ Lembretes via mensagem familiar</div>
+      <div class="pro">✓ Desenvolvimento via Blip (low-code)</div>
+      <div class="verdict">Escolhido: melhor relação entre alcance, custo e adoção real</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- FLOWS -->
+<section id="flows" class="section">
+  <div class="eyebrow">Fluxos</div>
+  <h2 class="title">Dois fluxos. Zero<br>funcionalidade desnecessária.</h2>
+  <p class="lead">O MVP resolve exatamente os dois problemas centrais — agendar e cancelar. Foco deliberado é uma decisão de produto.</p>
+  <div class="g2">
+    <div class="flow-card">
+      <div class="flow-head"><span class="pill pg">Fluxo 1</span> Agendamento de consulta</div>
+      <div class="flow-body">
+        <div class="flow-step"><div class="flow-n">1</div><div><div class="flow-t">Paciente inicia conversa</div><div class="flow-d">Envia mensagem para o número da SUSI. Bot saúda e apresenta as opções disponíveis.</div></div></div>
+        <div class="flow-step"><div class="flow-n">2</div><div><div class="flow-t">Identificação por CPF ou Cartão SUS</div><div class="flow-d">Sistema valida o cadastro e personaliza a resposta com o nome do paciente.</div></div></div>
+        <div class="flow-step"><div class="flow-n">3</div><div><div class="flow-t">Seleção de especialidade</div><div class="flow-d">Bot apresenta as especialidades da unidade em formato de lista clicável.</div></div></div>
+        <div class="flow-step"><div class="flow-n">4</div><div><div class="flow-t">Escolha de data e horário</div><div class="flow-d">Sistema exibe vagas disponíveis. Paciente confirma preferência com um toque.</div></div></div>
+        <div class="flow-step"><div class="flow-n">5</div><div><div class="flow-t">Confirmação + lembrete automático</div><div class="flow-d">Bot confirma e agenda lembrete automático 24h antes via WhatsApp.</div></div></div>
+      </div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-head"><span class="pill pr">Fluxo 2</span> Cancelamento de consulta</div>
+      <div class="flow-body">
+        <div class="flow-step"><div class="flow-n">1</div><div><div class="flow-t">Paciente acessa o bot ou responde ao lembrete</div><div class="flow-d">O lembrete enviado 24h antes já inclui ação rápida para cancelar.</div></div></div>
+        <div class="flow-step"><div class="flow-n">2</div><div><div class="flow-t">Seleciona "Cancelar consulta"</div><div class="flow-d">Menu principal exibe a opção claramente, sem navegação complexa.</div></div></div>
+        <div class="flow-step"><div class="flow-n">3</div><div><div class="flow-t">Bot identifica o agendamento ativo</div><div class="flow-d">Exibe os agendamentos do CPF para que o paciente selecione qual cancelar.</div></div></div>
+        <div class="flow-step"><div class="flow-n">4</div><div><div class="flow-t">Confirmação antes de cancelar</div><div class="flow-d">Pergunta de confirmação evita cancelamentos acidentais por toque errado.</div></div></div>
+        <div class="flow-step"><div class="flow-n">5</div><div><div class="flow-t">Vaga liberada e redistribuída</div><div class="flow-d">Sistema libera a vaga automaticamente para o próximo da lista de espera.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- WIREFRAMES -->
+<section class="section">
+  <div class="eyebrow">Wireframes</div>
+  <h2 class="title">Estrutura antes<br>da aparência.</h2>
+  <p class="lead">No design conversacional, o wireframe é o roteiro de mensagens — a lógica da conversa é o produto em si.</p>
+  <div class="g3">
+    <div class="wf-box">
+      <div class="wb ws"></div><div class="wb wm"></div>
+      <div class="wbl" style="height:72px"></div>
+      <div class="wb wf"></div>
+      <div class="wbr"><div class="wbt"></div><div class="wbt"></div></div>
+      <div class="wl">Tela de boas-vindas</div>
+    </div>
+    <div class="wf-box">
+      <div class="wb ws"></div>
+      <div class="wbl" style="height:40px"></div><div class="wbl" style="height:40px"></div><div class="wbl" style="height:40px"></div>
+      <div class="wb wm"></div>
+      <div class="wl">Seleção de horário</div>
+    </div>
+    <div class="wf-box">
+      <div class="wb ws"></div>
+      <div class="wbl" style="height:100px;background:var(--accent-light);border:1px solid var(--accent-mid)"></div>
+      <div class="wb wm"></div>
+      <div class="wbr"><div class="wbt" style="background:var(--green-light);border-color:#86EFAC"></div></div>
+      <div class="wl">Confirmação final</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- UI -->
+<section id="ui" class="section">
+  <div class="eyebrow">UI · Protótipo Conversacional</div>
+  <h2 class="title">A experiência<br>que o usuário vê.</h2>
+  <p class="lead">O design conversacional é a interface. Cada mensagem precisa guiar o próximo passo sem ambiguidade — especialmente para usuários com baixa literacia digital.</p>
+  <div class="g2">
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:12px;padding-left:4px">Fluxo de agendamento</div>
+      <div class="chat">
+        <div class="chat-bar"><div class="chat-ico">💊</div><div><div class="cbn">SUSI · UBS Central</div><div class="cbs">online agora</div></div></div>
+        <div class="chat-msgs">
+          <div class="msg bm">Olá! Sou a SUSI, assistente de agendamento da UBS Central 👋<br><br>Como posso ajudar?<div class="mo"><div class="mo-opt">📅 Agendar consulta</div><div class="mo-opt">❌ Cancelar consulta</div><div class="mo-opt">📋 Ver meus agendamentos</div></div><div class="mt">07:32</div></div>
+          <div class="msg um">Agendar consulta<div class="mt">07:33 ✓✓</div></div>
+          <div class="msg bm">Para continuar, preciso do seu CPF ou Cartão SUS 🪪<div class="mt">07:33</div></div>
+          <div class="msg um">123.456.789-00<div class="mt">07:33 ✓✓</div></div>
+          <div class="msg bm">Encontrei seu cadastro, Maria! 😊<br><br>Qual especialidade você precisa?<div class="mo"><div class="mo-opt">🩺 Clínica Geral</div><div class="mo-opt">❤️ Cardiologia</div><div class="mo-opt">🦴 Ortopedia</div></div><div class="mt">07:33</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:12px;padding-left:4px">Fluxo de cancelamento (via lembrete)</div>
+      <div class="chat">
+        <div class="chat-bar"><div class="chat-ico">💊</div><div><div class="cbn">SUSI · UBS Central</div><div class="cbs">online agora</div></div></div>
+        <div class="chat-msgs">
+          <div class="msg bm">🔔 <strong>Lembrete:</strong> Você tem consulta amanhã, 15/03 às 09h com Dr. Santos — Cardiologia.<br><br>Ainda poderá comparecer?<div class="mo"><div class="mo-opt">✅ Sim, vou comparecer</div><div class="mo-opt">❌ Preciso cancelar</div></div><div class="mt">14/03 · 10:00</div></div>
+          <div class="msg um">Preciso cancelar<div class="mt">10:03 ✓✓</div></div>
+          <div class="msg bm">Quer cancelar a consulta de 15/03 às 09h com Dr. Santos?<br>A vaga será liberada para outro paciente.<div class="mo"><div class="mo-opt">✅ Confirmar cancelamento</div><div class="mo-opt">↩ Voltar</div></div><div class="mt">10:03</div></div>
+          <div class="msg um">Confirmar cancelamento<div class="mt">10:04 ✓✓</div></div>
+          <div class="msg bm">✅ Cancelamento confirmado. Obrigada por avisar, Maria — isso ajuda outros pacientes!<div class="mt">10:04</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- IMPACT -->
+<section id="impact" class="section">
+  <div class="eyebrow">Impacto esperado <span class="pill ph" style="margin-left:6px;vertical-align:middle;font-size:10px">⚠ Hipótese</span></div>
+  <h2 class="title">O que a SUSI pode mudar.<br>Como vamos medir.</h2>
+  <p class="lead">Métricas de sucesso definidas antes do desenvolvimento. Valores são projeções conservadoras baseadas em benchmarks de chatbots de saúde.</p>
+  <div class="imp-grid">
+    <div class="imp-card"><div class="imp-num" style="color:var(--green)">−30%</div><div class="imp-lbl">Redução esperada na taxa de ausência nos primeiros 6 meses de operação</div><div class="imp-tag"><span class="pill ph">⚠ Projeção</span></div></div>
+    <div class="imp-card"><div class="imp-num" style="color:var(--accent)">24h</div><div class="imp-lbl">Disponibilidade do bot sem custo adicional de pessoal noturno ou de fim de semana</div><div class="imp-tag"><span class="pill pg">Garantido</span></div></div>
+    <div class="imp-card"><div class="imp-num" style="color:var(--amber)">R$55k</div><div class="imp-lbl">Margem mensal projetada com 300 clínicas ativas (100 por plano, descontando custos)</div><div class="imp-tag"><span class="pill ph">⚠ Projeção</span></div></div>
+  </div>
+  <div class="kpi-wrap">
+    <div class="kpi-head">KPIs de produto · Metas para MVP (6 meses)</div>
+    <div class="kpi-row"><div class="kpi-name">Taxa de conclusão do fluxo de agendamento</div><div class="kpi-track"><div class="kpi-fill" style="width:80%"></div></div><div class="kpi-val">≥ 80%</div></div>
+    <div class="kpi-row"><div class="kpi-name">Redução de ausências vs. baseline</div><div class="kpi-track"><div class="kpi-fill" style="width:30%;background:var(--green)"></div></div><div class="kpi-val">≥ 30%</div></div>
+    <div class="kpi-row"><div class="kpi-name">NPS do usuário (paciente)</div><div class="kpi-track"><div class="kpi-fill" style="width:70%"></div></div><div class="kpi-val">≥ 70</div></div>
+    <div class="kpi-row"><div class="kpi-name">Clínicas ativas no SOM</div><div class="kpi-track"><div class="kpi-fill" style="width:30%;background:var(--amber)"></div></div><div class="kpi-val">300+</div></div>
+    <div class="kpi-row"><div class="kpi-name">Tempo médio de agendamento completo</div><div class="kpi-track"><div class="kpi-fill" style="width:40%;background:#9CA3AF"></div></div><div class="kpi-val">≤ 3 min</div></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- LEARNINGS -->
+<section id="learnings" class="section">
+  <div class="eyebrow">Aprendizados</div>
+  <h2 class="title">O que esse projeto<br>nos ensinou.</h2>
+  <div class="g2">
+    <div class="learn-card" style="border-top:2px solid var(--green)"><div class="learn-type" style="color:var(--green)">O que funcionou</div><div class="learn-title">Escolher o canal antes de projetar a solução</div><div class="learn-body">Partir dos dados de uso do WhatsApp no Brasil antes de decidir a plataforma foi decisivo. Evitamos o erro clássico de construir um app para um público que não instala novos aplicativos — o mesmo erro que limita o ConecteSUS.</div></div>
+    <div class="learn-card" style="border-top:2px solid var(--green)"><div class="learn-type" style="color:var(--green)">O que funcionou</div><div class="learn-title">Identificar as OSS como cliente — não o SUS federal</div><div class="learn-body">Mapear as Organizações Sociais de Saúde como comprador foi um insight estratégico central. Elas têm autonomia de compra, urgência de eficiência e capacidade de assinar um contrato SaaS sem licitação federal — o que transforma o modelo de inviável para escalável.</div></div>
+    <div class="learn-card" style="border-top:2px solid var(--amber)"><div class="learn-type" style="color:var(--amber)">O que faria diferente</div><div class="learn-title">Conduzir pesquisa primária antes de definir personas</div><div class="learn-body">Personas foram construídas a partir de dados secundários. Entrevistas com 6–8 usuários reais teriam validado — ou derrubado — nossas suposições sobre literacia digital e padrões de comportamento antes de qualquer decisão de design do fluxo conversacional.</div></div>
+    <div class="learn-card" style="border-top:2px solid var(--amber)"><div class="learn-type" style="color:var(--amber)">O que faria diferente</div><div class="learn-title">Testar o fluxo com usuários reais antes de validar a linguagem</div><div class="learn-body">A linguagem do bot foi definida com hipóteses sobre literacia digital do público. Um teste de usabilidade com 5 usuários revelaria pontos de abandono no fluxo que não conseguimos prever — especialmente nas etapas de identificação por CPF.</div></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- NEXT STEPS -->
+<section id="nextsteps" class="section" style="padding-bottom:0">
+  <div class="eyebrow">Próximos Passos</div>
+  <h2 class="title">O que vem depois<br>do MVP.</h2>
+  <p class="lead">Prioridades organizadas por impacto e urgência. Os dois primeiros são pré-requisitos para qualquer desenvolvimento sério.</p>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div class="nx-row"><div class="nx-ico">🎙</div><div class="nx-content flex-1"><div class="nx-title">Pesquisa qualitativa com usuários do SUS</div><div class="nx-desc">Conduzir 6–10 entrevistas para validar personas, identificar barreiras de linguagem no bot e medir literacia digital real do público-alvo.</div></div><span class="pill pr" style="flex-shrink:0;align-self:center">Prioridade alta</span></div>
+    <div class="nx-row"><div class="nx-ico">🧪</div><div class="nx-content flex-1"><div class="nx-title">Teste de usabilidade do fluxo conversacional</div><div class="nx-desc">Validar os fluxos de agendamento e cancelamento com 5 usuários reais — medir taxa de conclusão, pontos de abandono e clareza das mensagens.</div></div><span class="pill pr" style="flex-shrink:0;align-self:center">Prioridade alta</span></div>
+    <div class="nx-row"><div class="nx-ico">🏥</div><div class="nx-content flex-1"><div class="nx-title">Piloto com uma OSS parceira</div><div class="nx-desc">Implantar a SUSI em uma unidade para coletar dados reais de conclusão de fluxo, redução de ausências e feedback de recepcionistas.</div></div><span class="pill pa" style="flex-shrink:0;align-self:center">Médio prazo</span></div>
+    <div class="nx-row"><div class="nx-ico">📊</div><div class="nx-content flex-1"><div class="nx-title">Dashboard de gestão para as OSS</div><div class="nx-desc">Painel com taxa de comparecimento, cancelamentos em tempo real e agendamentos por especialidade — viabilizando decisões baseadas em dados.</div></div><span class="pill pgr" style="flex-shrink:0;align-self:center">Plano Avançado</span></div>
+    <div class="nx-row"><div class="nx-ico">🔗</div><div class="nx-content flex-1"><div class="nx-title">Integração com prontuários eletrônicos</div><div class="nx-desc">Conectar a SUSI ao sistema de prontuários para retorno automático e histórico de consultas acessível pelo paciente via WhatsApp.</div></div><span class="pill pgr" style="flex-shrink:0;align-self:center">Plano Premium</span></div>
+  </div>
+</section>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-in">
+    <div class="footer-brand">SUSI</div>
+    <div class="footer-note">Product Case Study · 2024 · Agendamento On-line via WhatsApp · 7 pessoas</div>
+    <div class="footer-note" style="display:flex;align-items:center;gap:6px"><span class="pill ph" style="font-size:10px">⚠ Hipótese</span> = não validado com pesquisa primária</div>
+  </div>
+</footer>
+
+<script>
+function goto(id,btn){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+}
+const ids=['cover','overview','problem','context','research','insights','personas','journey','hmw','ideation','flows','ui','impact','learnings','nextsteps'];
+const map={cover:'Cover',overview:'Overview',problem:'Problema',context:'Contexto',research:'Pesquisa',insights:'Insights',personas:'Personas',journey:'Jornada',hmw:'HMW',ideation:'Ideação',flows:'Fluxos',ui:'UI',impact:'Impacto',learnings:'Aprendizados',nextsteps:'Próximos Passos'};
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const lbl=map[e.target.id];
+      document.querySelectorAll('.nav-link').forEach(l=>l.classList.toggle('active',l.textContent.trim()===lbl));
+    }
+  });
+},{threshold:0.2});
+ids.forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el);});
+</script>
+</body>
+</html>
